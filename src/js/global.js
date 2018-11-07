@@ -9,38 +9,16 @@ function oneToTwenty () {
     document.getElementById('ans').innerHTML = ''
     // adds values of ones array to ans div
     ones.forEach (x => {
-       // creates p element and adds x to it 
-       var newElement = document.createElement("p");
-       var newText = document.createTextNode(`${x}`);
-       newElement.appendChild(newText);
-       // adds p element to ans div
-       var destination = document.getElementById("ans");
-       destination.appendChild(newElement); 
+       display(x)
     })
     // adds ten after the ones at the end
-    var newElement = document.createElement("p");
-    var newText = document.createTextNode(`ten`);
-    newElement.appendChild(newText);
-    // adds p element to ans div
-    var destination = document.getElementById("ans");
-    destination.appendChild(newElement); 
-    // adds values of teens array to ans div
+    display('ten')
+    //adds teens to page
     teens.forEach (x => {
-        // creates p element and adds x to it 
-        var newElement = document.createElement("p");
-        var newText = document.createTextNode(`${x}`);
-        newElement.appendChild(newText);
-        // adds p element to ans div
-        var destination = document.getElementById("ans");
-        destination.appendChild(newElement); 
+        display(x)
     })
     // adds twenty at the end
-    var newElement = document.createElement("p");
-    var newText = document.createTextNode(`${tens[0]}`);
-    newElement.appendChild(newText);
-    // adds p element to ans div
-    var destination = document.getElementById("ans");
-    destination.appendChild(newElement); 
+    display(tens[0])
 }
 
 function oneToHundred () {
@@ -51,37 +29,14 @@ function oneToHundred () {
     // adds 21 through 1000
     tens.forEach (x => {
        // This simply adds the multiples of tens up to 90 
-        // creates p element and adds x to it 
-        var newElement = document.createElement("p");
-        var newText = document.createTextNode(`${x}`);
-        newElement.appendChild(newText);
-        // adds p element to ans div
-        var destination = document.getElementById("ans");
-        destination.appendChild(newElement);
-       // This adds 1 through 9 for each tens.
+        display(x)
+        // This adds 1 through 9 for each tens (21,22,23...31,32,etc).
         ones.forEach (i => {
-            // creates p element and adds x to it 
-            var newElement = document.createElement("p");
-            var newText = document.createTextNode(`${x}-`);
-            newElement.appendChild(newText);
-            // adds p element to ans div
-            var destination = document.getElementById("ans");
-            destination.appendChild(newElement);
-            // creates p element and adds x to it 
-            var newText = document.createTextNode(`${i}`);
-            newElement.appendChild(newText);
-            // adds p element to ans div
-            var destination = document.getElementById("ans");
-            destination.appendChild(newElement); 
+            display(`${x}-${i}`) 
         })
     })
-    // adds twenty at the end
-    var newElement = document.createElement("p");
-    var newText = document.createTextNode(`one hundred`);
-    newElement.appendChild(newText);
-    // adds p element to ans div
-    var destination = document.getElementById("ans");
-    destination.appendChild(newElement); 
+    // adds one hundred
+    display(`one hundred`)
 }
 
 function oneToThousand () {
@@ -91,71 +46,37 @@ function oneToThousand () {
     document.getElementById('ans').removeChild(document.getElementById('ans').lastChild)
     // loops through ones array for each hundred
     ones.forEach (x => {
-        // creates p element and adds x to it 
-        var newElement = document.createElement("p");
-        var newText = document.createTextNode(`${x} hundred`);
-        newElement.appendChild(newText);
-        // adds p element to ans div
-        var destination = document.getElementById("ans");
-        destination.appendChild(newElement);
-        // adds values of ones array to ans div
+        // adds each hundred
+        display(`${x} hundred`)
+        // ... hundred and one through ... hundred and 9
         ones.forEach (y => {
-            // creates p element and adds x to it 
-            var newElement = document.createElement("p");
-            var newText = document.createTextNode(`${x} hundred and ${y}`);
-            newElement.appendChild(newText);
-            // adds p element to ans div
-            var destination = document.getElementById("ans");
-            destination.appendChild(newElement); 
+            display(`${x} hundred and ${y}`) 
         })
         // adds ten after the ones at the end
-        var newElement = document.createElement("p");
-        var newText = document.createTextNode(`${x} hundred and ten`);
-        newElement.appendChild(newText);
-        // adds p element to ans div
-        var destination = document.getElementById("ans");
-        destination.appendChild(newElement); 
-        // adds values of teens array to ans div
+        display(`${x} hundred and ten`)
+        // displays 11-19 for each hundred
         teens.forEach (y => {
-            // creates p element and adds x to it 
-            var newElement = document.createElement("p");
-            var newText = document.createTextNode(`${x} hundred and ${y}`);
-            newElement.appendChild(newText);
-            // adds p element to ans div
-            var destination = document.getElementById("ans");
-            destination.appendChild(newElement); 
+            display(`${x} hundred and ${y}`)
         })
         // displays 21-99 for each hundred
         tens.forEach (i => {
             // This simply adds the multiples of tens up to 90 
-            // creates p element and adds x to it 
-            var newElement = document.createElement("p");
-            var newText = document.createTextNode(`${x} hundred and ${i}`);
-            newElement.appendChild(newText);
-            // adds p element to ans div
-            var destination = document.getElementById("ans");
-            destination.appendChild(newElement);
+            display(`${x} hundred and ${i}`)
             // This adds 1 through 9 for each tens.
             ones.forEach (p => {
-                // creates p element and adds x to it 
-                var newElement = document.createElement("p");
-                var newText = document.createTextNode(`${x} hundred and ${i}-`);
-                newElement.appendChild(newText);
-                // adds p element to ans div
-                var destination = document.getElementById("ans");
-                destination.appendChild(newElement);
-                // creates p element and adds x to it 
-                var newText = document.createTextNode(`${p}`);
-                newElement.appendChild(newText);
-                // adds p element to ans div
-                var destination = document.getElementById("ans");
-                destination.appendChild(newElement); 
+                display(`${x} hundred and ${i}-${p}`)
             })
         })
     })
+    // adds 1000 at the end
+    display(`one thousand`)
+}
+
+// displays a value to the page
+function display (value) {
     // creates p element and adds x to it 
     var newElement = document.createElement("p");
-    var newText = document.createTextNode(`one thousand`);
+    var newText = document.createTextNode(value);
     newElement.appendChild(newText);
     // adds p element to ans div
     var destination = document.getElementById("ans");
