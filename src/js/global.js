@@ -1,7 +1,8 @@
 // arrays for ones, teens, and tens
-const ones = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
-const teens = ['eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
-const tens = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+const ones = ['','one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+const teens = ['ten','eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
+const tens = ['','twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+const place = ['','hundred','thousand','million','billion','trillion']
 
 // function that displays 1 through 20
 function oneToTwenty () {
@@ -9,67 +10,60 @@ function oneToTwenty () {
     document.getElementById('ans').innerHTML = ''
     // adds values of ones array to ans div
     ones.forEach (x => {
-       display(x)
+        display(x);
     })
-    // adds ten after the ones at the end
-    display('ten')
     //adds teens to page
     teens.forEach (x => {
-        display(x)
+        display(x);
     })
     // adds twenty at the end
-    display(tens[0])
+    display(tens[1]);
 }
 
 function oneToHundred () {
     // calls oneToTwenty which displays one through twenty
-    oneToTwenty()
+    oneToTwenty();
     // removes twenty so that it does not duplicate
     document.getElementById('ans').removeChild(document.getElementById('ans').lastChild)
     // adds 21 through 1000
-    tens.forEach (x => {
-       // This simply adds the multiples of tens up to 90 
-        display(x)
-        // This adds 1 through 9 for each tens (21,22,23...31,32,etc).
-        ones.forEach (i => {
-            display(`${x}-${i}`) 
+    tens.forEach ((x,d) => {
+        ones.forEach ((i) => {
+            if (d!=0) display(`${x} ${i}`);
         })
     })
     // adds one hundred
-    display(`one hundred`)
+    display(ones[1] + ' ' + place[1]);
 }
 
 function oneToThousand () {
     // calls oneToTwenty which displays one through twenty
-    oneToHundred()
+    oneToHundred();
     // removes twenty so that it does not duplicate
-    document.getElementById('ans').removeChild(document.getElementById('ans').lastChild)
+    document.getElementById('ans').removeChild(document.getElementById('ans').lastChild);
     // loops through ones array for each hundred
-    ones.forEach (x => {
+    ones.forEach ((x,d) => {
         // adds each hundred
-        display(`${x} hundred`)
+        // display(`${x} hundred`);
         // ... hundred and one through ... hundred and 9
-        ones.forEach (y => {
-            display(`${x} hundred and ${y}`) 
-        })
-        // adds ten after the ones at the end
-        display(`${x} hundred and ten`)
-        // displays 11-19 for each hundred
-        teens.forEach (y => {
-            display(`${x} hundred and ${y}`)
-        })
-        // displays 21-99 for each hundred
-        tens.forEach (i => {
-            // This simply adds the multiples of tens up to 90 
-            display(`${x} hundred and ${i}`)
-            // This adds 1 through 9 for each tens.
-            ones.forEach (p => {
-                display(`${x} hundred and ${i}-${p}`)
+        if (d!=0) {
+            ones.forEach ((y,z) => {
+                if (z!=0) display(`${x} hundred and ${y}`);
             })
-        })
+            // displays 11-19 for each hundred
+            teens.forEach (y => {
+                display(`${x} hundred and ${y}`);
+            })
+            // displays 21-99 for each hundred
+            tens.forEach ((i,f) => {
+                // This adds 1 through 9 for each tens.
+                ones.forEach (p => {
+                    if (f!=0) display(`${x} ${place[1]} and ${i} ${p}`);
+                })
+            })
+        }
     })
     // adds 1000 at the end
-    display(`one thousand`)
+    display(`${ones[1]} ${place[2]}`);
 }
 
 // displays a value to the page
