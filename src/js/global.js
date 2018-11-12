@@ -65,7 +65,6 @@ function oneToThousand () {
     // adds 1000 at the end
     display(`${ones[1]} ${place[2]}`);
 }
-
 // displays a value to the page
 function display (value) {
     // creates p element and adds x to it 
